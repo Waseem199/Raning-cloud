@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+  body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #2D2F42;
+  }
+  .container{
+  display: flex;
+  /* align-items: center;*/
+  /*justify-content: center;*/
+  height: 170px;
+  font-size: 80px;
+  
+  background: #2D2F42;
+  }
+  .cloud{
+  position: relative;
+  width: 299px;
+  height: 125px;
+  background: #FFFFFF;
+  border-radius: 100px;
+  top: -50px;
+  filter: drop-shadow(8px 10px 0 #2D2F42);
+  animation: clo 2s steps(1) infinite;
+  
+  }
+  @keyframes clo{
+  0%{
+  filter: drop-shadow(0px 0px 0 #FFFFFF)
+  brightness(1);
+  }
+  95%{
+  filter: drop-shadow(1px 1px 10px #FFFFFF)
+  brightness(10);
+  }
+  
+  }
+  .container .cloud::before {
+  content: '';
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  border-radius: 50%;
+  top:-40px;
+  left: 30px;
+  background: #42445A;
+  box-shadow: 90px -10px 0 30px #42445A;
+  }
+  .container .cloud::after{
+  content: '';
+  position: absolute;
+  background: #42445A;
+  border-radius:100px;
+  inset: 0;
+  }
+  .container .cloud .drop{
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 2px;
+  height: 10px;
+  background: #1788E8;
+  transform-origin: bottom ;
+  animation: ani 2s linear infinite;
+  }
+  @keyframes ani{
+  0%{
+  transform: translateY(0) scaleY(1);
+  }
+  70%{
+  transform: translateY(360px) scaleY(1);
+  }
+  80%{
+  transform: translateY(360px) scaleY(0.5);
+  }
+  100%{
+  transform: translateY(360px) scaleY(0.5) scaleX(15);
+  }
+  }
+  .text{
+  font-size: 20px;
+  color:#2D2F42 ;
+  position: absolute;
+  top: -30vh;
+  -webkit-text-stroke: 0;
+  }</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Raining Animation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+  <div class="cloud">
+  <div class="text">@46du1_0</div>  
+  </div>
+</div>
+<script>
+  function rain(){
+  let cloud=document.querySelector('.cloud');
+  let e=document.createElement('div');
+  let left=Math.floor(Math.random() * 300);
+  let width=Math.random() * 5;
+  let height=Math.random() * 50;
+  e.classList.add('drop');
+
+e.style.color="white";
+  cloud.appendChild(e);
+
+  e.style.left = left + 'px';
+
+  e.style.width=0.5+width + 'px';
+  e.style.height=0.5+height + 'px'
+  setTimeout(function() {
+
+    cloud.removeChild(e)
+  }, 2000)
+}
+
+setInterval(function() {
+  rain()
+}, 20);
+
+</script>
+</body>
+</html>
